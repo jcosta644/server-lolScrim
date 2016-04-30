@@ -4,4 +4,5 @@
 ```
 API_KEY="Sua chave"
 
-DB_HOST="banco de dados, falta definir um nome certo"
+DB_HOST=mongodb://localhost/lol-scrim
+```
