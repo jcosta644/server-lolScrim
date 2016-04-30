@@ -16,8 +16,13 @@
   ],
   "author": "Jardel, Pedro",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcosta644/server-lolScrim.git"
+  },
   "dependencies": {
     "body-parser": "1.15.0",
+    "dotenv": "2.0.0",
     "express": "4.13.4",
     "leagueapi": "0.4.19",
     "mongoose": "4.4.14"
