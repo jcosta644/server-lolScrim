@@ -7,7 +7,7 @@ const Promise = require("bluebird");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const LolApi = require('leagueapi');
+var request = require('request');
 
 const port = process.env.PORT || 8000;
 const db = process.env.DB_HOST;
@@ -17,25 +17,18 @@ mongoose.connect(db);
 mongoose.Promise = Promise;
 mongoose.set("debug", true);
 
-LolApi.init(key, 'br');
-
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-var region = function (req,res){
-	LolApi.getRegions()
-		.then(function (regions) {
-    		res.status(200).json(regions);
+var summoner = function(req, res){
+	let name = req.body.name;
+
+	request('https://br.api.pvp.net/api/lol/br/v1.4/summoner/by-name/'+ name + '?api_key='+ key, function (error, response, body) {
+  		if (!error && response.statusCode == 200) {
+    		res.json(JSON.parse(body));
+  		}
 	});
 }
 
-var summoner = function(req,res){
-	LolApi.Summoner.getByName(req.body.name,req.body.region)
-		.then(function(summonerData){
-			res.status(200).json(summonerData);
-	});
-}
-
-app.get("/", region);
 app.post("/", summoner);
 app.listen(port);
