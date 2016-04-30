@@ -29,5 +29,13 @@ var region = function (req,res){
 	});
 }
 
+var summoner = function(req,res){
+	LolApi.Summoner.getByName(req.body.name,req.body.region)
+		.then(function(summonerData){
+			res.status(200).json(summonerData);
+	});
+}
+
 app.get("/", region);
+app.post("/", summoner);
 app.listen(port);

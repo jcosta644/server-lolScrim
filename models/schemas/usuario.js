@@ -41,6 +41,22 @@ const UsuarioSchema = new mongoose.Schema({
     	type: String,
 
     	required: true
+    },
+
+        criadoEm: {
+        type: Date,
+
+        default: Date.now
+    },
+
+    atualizadoEm: {
+        type: Date,
+
+        default: Date.now,
+
+        set: Date.now,
+
+        index: true
     }
 });
 
