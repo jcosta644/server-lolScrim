@@ -43,7 +43,7 @@ const UsuarioSchema = new mongoose.Schema({
     	required: true
     },
 
-        criadoEm: {
+    criadoEm: {
         type: Date,
 
         default: Date.now
