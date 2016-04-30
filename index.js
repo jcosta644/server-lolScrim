@@ -23,13 +23,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 var region = function (req,res){
-	LolApi.getRegions(function(error, regions){
-		if(err){
-            res.status(500).send(error);
-        }else{
-            res.status(200).json(regions);
-        }
-	})
+	LolApi.getRegions()
+		.then(function (regions) {
+    		res.status(200).json(regions);
+	});
 }
 
 app.get("/", region);
