@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-const UsuarioSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
 	login: {
         type: String,
 
@@ -22,9 +22,7 @@ const UsuarioSchema = new mongoose.Schema({
     idInvocador: {
         type: String,
 
-        unique: true,
-
-        required: true
+        unique: true
     },
 
     email: {
@@ -43,7 +41,7 @@ const UsuarioSchema = new mongoose.Schema({
     	required: true
     },
 
-        criadoEm: {
+    criadoEm: {
         type: Date,
 
         default: Date.now
@@ -60,4 +58,4 @@ const UsuarioSchema = new mongoose.Schema({
     }
 });
 
-module.exports = UsuarioSchema;
+module.exports = UserSchema;

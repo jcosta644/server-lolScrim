@@ -6,7 +6,9 @@ const bcrypt = require("bcrypt-nodejs");
 const CredentialSchema = new mongoose.Schema({
     login: {
         type: String,
+
         required: true,
+        
         unique: true
     },
     senha: {
