@@ -15,6 +15,8 @@ module.exports = {
 				function (error, response, body) {
 		  			if (!error && response.statusCode == 200) {
 		    			res.json(JSON.parse(body));
+		  			}else{
+		  				res.send("Summoner is invalid!");
 		  			}
 			});
 	},
@@ -77,7 +79,21 @@ module.exports = {
 							});
 					}
 		});
-	}
+	},
 
+	getChampionById(req, res){
+		let championId = req.body.id;
+		let region = req.body.region;
+
+		request(
+			API.base_URL + 'static-data/' + region + API.getChampionById + championId + API.key,
+				function(error, response, body){
+					if(!error && response.statusCode == 200) {
+						res.json(JSON.parse(body));
+					}else{
+						res.send("Champion não encontrado!");
+					}
+			});
+	}
 
 }
