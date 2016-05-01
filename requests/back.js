@@ -1,14 +1,8 @@
 "use strict";
 
-require("dotenv").load();
-
 const request = require("request");
 
-const API = {
-	key: "?api_key=" + process.env.API_KEY,
-	base_URL: "https://br.api.pvp.net/api/lol/",
-	getSummonerByName: "/v1.4/summoner/by-name/"
-}
+const API = require("./API");
 
 module.exports = {
 	getIdSummonerByName(name, region, cb){
