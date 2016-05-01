@@ -25,10 +25,10 @@ module.exports = {
     },
 
     showMe(req, res, next) {
-        const nomeInvocador = req.user.nomeInvocador;
+        const nomeInvocador = req.params.nomeInvocador;
 
         UserModel.getByNomeInvocador(nomeInvocador)
-            .then(usuario => res.json(user))
+            .then(user => res.json(user))
             .catch(err => next(err));
     },
 
