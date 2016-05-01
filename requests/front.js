@@ -29,7 +29,7 @@ module.exports = {
 		});
 	},
 
-	getChampionStatsBySummonerId = function(req, res){
+	getChampionStatsBySummonerId(req, res){
 		let id = req.body.id;
 		let region = req.body.region;
 		let lane = req.body.lane;

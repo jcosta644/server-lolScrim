@@ -21,5 +21,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 app.use("/api/usuarios", routes.user);
+app.use("/api/requisicoes", routes.request);
 
 app.listen(port);

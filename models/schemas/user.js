@@ -22,6 +22,8 @@ const UserSchema = new mongoose.Schema({
     idInvocador: {
         type: String,
 
+        required: true,
+
         unique: true
     },
 
