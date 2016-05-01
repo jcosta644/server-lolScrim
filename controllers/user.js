@@ -1,3 +1,5 @@
+"use strict";
+
 const UserModel = require("../models/user");
 const CredentialModel = require("../models/credential");
 
@@ -10,9 +12,8 @@ module.exports = {
         const data = req.body;
 
         CredentialModel.create(data)
-            .then(() => UsuarioModel.create(data))
-            .then(usuario => {
-                res.setHeader("Location", req.baseUrl + "/" + usuario._id);
+            .then(() => UserModel.create(data))
+            .then(user => {
                 res.status(CREATED_STATUS_CODE).send("Criado com sucesso");
             })
             .catch(err => next(err));

@@ -8,9 +8,9 @@ let TeamModel;
 
 TeamSchema.statics = {
 	create(data) {
-        let user = new UsuarioModel(data);
+        let team = new TeamModel(data);
 
-        return user.save();
+        return team.save();
     },
 
 TeamModel = module.exports = mongoose.model("Team", TeamSchema);
