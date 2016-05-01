@@ -12,8 +12,6 @@ const API = {
 
 module.exports = {
 	getIdSummonerByName(name, region, cb){
-		let result;
-
 		request(
 			API.base_URL + region + API.getSummonerByName + name + API.key, 
 				function (error, response, body) {
