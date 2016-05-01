@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-const UsuarioSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
 	login: {
         type: String,
 
@@ -60,4 +60,4 @@ const UsuarioSchema = new mongoose.Schema({
     }
 });
 
-module.exports = UsuarioSchema;
+module.exports = UserSchema;

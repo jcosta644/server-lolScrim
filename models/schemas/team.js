@@ -32,7 +32,7 @@ const TeamSchema = new mongoose.Schema({
         usuario: {
             type: Schema.Types.ObjectId,
 
-            ref: "Usuario",
+            ref: "User",
 
             required: true
         },
