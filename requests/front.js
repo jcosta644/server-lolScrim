@@ -91,9 +91,23 @@ module.exports = {
 					if(!error && response.statusCode == 200) {
 						res.json(JSON.parse(body));
 					}else{
-						res.send("Champion não encontrado!");
+						res.send("Champion not found!");
+					}
+			});
+	},
+
+	getRecentGames(req, res){
+		let summonerId = req.body.id;
+		let region = req.body.region;
+
+		request(
+			API.base_URL + region + API.getRecentGamesById + summonerId + '/recent' + API.key,
+				function(error, response,body){
+					if(!error && response.statusCode == 200){
+						res.json(JSON.parse(body));
+					}else{
+						res.send("Didn't found matches!");
 					}
 			});
 	}
-
 }

@@ -11,7 +11,8 @@ const API = {
 	getMatchListBySummonerId: "/v2.2/matchlist/by-summoner/",
 	getChampionStatsBySummonerId: "/v1.3/stats/by-summoner/",
 	filterRankedSeasontoMatchList: "?rankedQueues=TEAM_BUILDER_DRAFT_RANKED_5x5&seasons=SEASON2016&api_key=" + process.env.API_KEY,
-	getChampionById: "/v1.2/champion/"
+	getChampionById: "/v1.2/champion/",
+	getRecentGamesById: "/v1.3/game/by-summoner/"
 }
 
 module.exports = API;
