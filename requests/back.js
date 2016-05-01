@@ -4,22 +4,26 @@ require("dotenv").load();
 
 const request = require("request");
 
-const key = process.env.API_KEY;
+const API = {
+	key: "?api_key=" + process.env.API_KEY,
+	base_URL: "https://br.api.pvp.net/api/lol/",
+	getSummonerByName: "/v1.4/summoner/by-name/"
+}
 
 module.exports = {
-	getIdSummonerByName(name, region){
-		let result = "";
+	getIdSummonerByName(name, region, cb){
+		let result;
 
-		request('https://br.api.pvp.net/api/lol/'+ region +'/v1.4/summoner/by-name/'+ name + '?api_key='+ key, function (error, response, body) {
-  			if (!error && response.statusCode == 200) {
-    			let summoner =  JSON.parse(body);
-    			//let summonerName = name.toLowerCase().split(' ').join('');
-    			console.log(name);
+		request(
+			API.base_URL + region + API.getSummonerByName + name + API.key, 
+				function (error, response, body) {
+  					if (!error && response.statusCode == 200) {
+						let summonerName = name.toLowerCase().split(' ').join('');
 
-    			result = summoner.name.id;
-  			}
-		});
-
-		return result;
+  						cb(JSON.parse(body)[summonerName].id);
+  					} else {
+  						cb("ID não encontrado");
+  					}
+			});
 	}
 }
