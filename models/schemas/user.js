@@ -37,6 +37,12 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
 
+    lane: {
+        type: String,
+
+        required: true
+    },
+
     regiao: {
     	type: String,
 

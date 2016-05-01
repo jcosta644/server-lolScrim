@@ -22,8 +22,23 @@ module.exports = {
             })
             .catch(err => next(err));
         });
+    },
 
+    showMe(req, res, next) {
+        const nomeInvocador = req.user.nomeInvocador;
 
+        UserModel.getByNomeInvocador(nomeInvocador)
+            .then(usuario => res.json(user))
+            .catch(err => next(err));
+    },
+
+    updateMe(req, res, next) {
+        const data = req.body;
+        const id = req.user._id;
+
+        UserModel.updateUserById(id, data)
+            .then(usuario => res.json(usuario))
+            .catch(err => next(err));
     }
 
 }
