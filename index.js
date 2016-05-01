@@ -7,13 +7,11 @@ const Promise = require("bluebird");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const request = require("request");
 
 const routes = require("./routes");
 
 const port = process.env.PORT || 8000;
 const db = process.env.DB_HOST;
-const key = process.env.API_KEY;
 
 mongoose.connect(db);
 mongoose.Promise = Promise;
