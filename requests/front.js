@@ -21,6 +21,18 @@ module.exports = {
 			});
 	},
 
+	test(req, res){
+		request(
+			API.base_URL + 'static-data/br' + API.getChampionById + 412 + API.key,
+				function(error, response, body){
+					if(!error && response.statusCode == 200) {
+						res.json(JSON.parse(body));
+					}else{
+						res.send("Champion not found!");
+					}
+			});
+	},
+
 	getRankedLeague(req, res){
 		let id = req.body.id;
 		let region = req.body.region;
@@ -46,9 +58,11 @@ module.exports = {
 					if(!error && response.statusCode == 200) {
 						let match = JSON.parse(body);
 						match.matches.forEach(function(item, index){
-							if(item.lane == lane || item.role == lane){
-								matchListLane.push(item);
-							}
+							if(lane == "MID" && item.lane == lane && item.role == "SOLO") matchListLane.push(item);
+							if(lane == "TOP" && item.lane == lane && item.role == "SOLO") matchListLane.push(item);
+							if(lane == "JUNGLE" && item.lane == lane && item.role == "NONE") matchListLane.push(item);
+							if(lane == "SUPPORT" && item.lane == "BOTTOM" && item.role == "DUO_SUPPORT") matchListLane.push(item);
+							if(lane == "ADC" && item.lane == "BOTTOM" && item.role == "DUO_CARRY") matchListLane.push(item);
 						});
 						request(
 							API.base_URL + region + API.getChampionStatsBySummonerId + id + '/ranked' + API.key,
@@ -73,7 +87,6 @@ module.exports = {
 										matchList.sort(function(a,b) {
 										    return a.stats.totalSessionsPlayed < b.stats.totalSessionsPlayed ? -1 : a.stats.totalSessionsPlayed > b.stats.totalSessionsPlayed ? 1 : 0;
 										});
-
 										res.json(matchList.slice(-3));
 									}
 							});

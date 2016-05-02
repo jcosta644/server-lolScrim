@@ -8,6 +8,9 @@ const ApiLol = require("../requests/front");
 router.route("/champion")
 	.post(ApiLol.getChampionById);
 
+router.route("/champion")
+	.get(ApiLol.test);
+
 router.route("/summoner")
 	.post(ApiLol.getSummonerByName);
 
